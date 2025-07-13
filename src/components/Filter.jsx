@@ -8,7 +8,11 @@ export default function Filtersection() {
       <div className="filter-options">
         <select className="dropdown" id="genredropdown">
           <option value="">All Genres</option>
-          <option value="podcast1">{genres.title}</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.title}
+            </option>
+          ))}
         </select>
 
         <select className="dropdown" id="updateddropdown">
