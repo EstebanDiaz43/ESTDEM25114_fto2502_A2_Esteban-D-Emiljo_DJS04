@@ -24,6 +24,7 @@ In this project, I built a simple, responsive React application that fetches and
 ---
 
 ## 🧠 How It Works
+
 On mount, the app calls ** fetchPodcasts() ** to retrieve data from an API.
 While data is loading, a spinner and message are shown.
 If fetching fails, an error message appears.
@@ -33,5 +34,3 @@ After successful fetch:
 - <Filtersection /> shows genre filters.
 - <Searchsection /> allows searching by title.
 - Podcasts matching the search appear in the grid.
-
-
