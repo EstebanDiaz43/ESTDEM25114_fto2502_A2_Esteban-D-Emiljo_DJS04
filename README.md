@@ -34,3 +34,22 @@ After successful fetch:
 - <Filtersection /> shows genre filters.
 - <Searchsection /> allows searching by title.
 - Podcasts matching the search appear in the grid.
+
+## How To Use
+
+### Search
+
+- Type in the name of your podcast. As you type, it will start to show options corresponding to your search.
+
+### Genre filter
+
+- Click on the dropdown icon.
+- A list of genre options will be displayed, from which you can select.
+- After selecting a genre, the grid will automatically update to show podcasts of that genre.
+
+### Sort filter
+
+- Click on the dropdown icon.
+- A list of sorting options will be displayed, from which you can choose.
+- Select how you want the podcasts to be sorted.
+- The grid will then update based on your selected sorting method.
