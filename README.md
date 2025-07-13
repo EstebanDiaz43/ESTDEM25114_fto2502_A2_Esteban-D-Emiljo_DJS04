@@ -1,13 +1,6 @@
 # 🎧 Podcast Explorer
 
-A simple, responsive React application that fetches and displays a collection of podcasts from an external API. Users can browse, search, and filter podcasts by title and genre in a clean, user-friendly interface.
-
----
-
-## 📸 Demo
-
-![Podcast Explorer Screenshot](./screenshot.png)
-*_(Add a screenshot of the app here if available)_*
+In this project, I built a simple, responsive React application that fetches and displays a collection of podcasts from an external API. Users can browse, search, and filter podcasts by title and genre in a clean, user-friendly interface. The goal of this project was to create an intuitive experience that responds to user input in real time while maintaining consistent and seamless navigation throughout.
 
 ---
 
