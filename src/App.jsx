@@ -5,6 +5,7 @@ import { fetchPodcasts } from "./api/fetchPodcasts";
 import Header from "./components/Header";
 import Filtersection from "./components/Filter";
 import Searchsection from "./components/Search";
+import { filterAndSortByGenre } from "./utils/filtergenres";
 import { searchPodcastsByTitleStart } from "./utils/searchfunction";
 
 /**
@@ -20,18 +21,27 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
     fetchPodcasts(setPodcasts, setError, setLoading);
   }, []);
 
-  // Filter podcasts based on search
-  const filteredPodcasts = searchPodcastsByTitleStart(podcasts, search);
+  // Filter by genre first
+  const genreFilteredPodcasts = filterAndSortByGenre(podcasts, selectedGenre);
+  // Then filter by search
+  const filteredPodcasts = searchPodcastsByTitleStart(
+    genreFilteredPodcasts,
+    search
+  );
 
   return (
     <>
       <Header />
-      <Filtersection />
+      <Filtersection
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
+      />
       <main>
         {loading && (
           <div className="message-container">
@@ -39,7 +49,6 @@ export default function App() {
             <p>Loading podcasts...</p>
           </div>
         )}
-
         {error && (
           <div className="message-container">
             <div className="error">
@@ -47,17 +56,13 @@ export default function App() {
             </div>
           </div>
         )}
-
         {!loading && !error && (
-          <>
-            {/* Only show the grid, pass search and setSearch to Searchsection */}
-            <Searchsection
-              podcasts={filteredPodcasts}
-              genres={genres}
-              search={search}
-              setSearch={setSearch}
-            />
-          </>
+          <Searchsection
+            podcasts={filteredPodcasts}
+            genres={genres}
+            search={search}
+            setSearch={setSearch}
+          />
         )}
       </main>
     </>

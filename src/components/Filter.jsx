@@ -1,12 +1,22 @@
-import React from "react";
 import { genres } from "../data";
+import { filterAndSortByGenre } from "../utils/filtergenres";
 
-export default function Filtersection() {
+export default function Filtersection({ selectedGenre, setSelectedGenre }) {
+  // Handle dropdown change and filter podcasts
+  const handleGenreChange = (e) => {
+    setSelectedGenre(e.target.value);
+  };
+
   return (
     <div className="filter-header">
       <h3>Filter by:</h3>
       <div className="filter-options">
-        <select className="dropdown" id="genredropdown">
+        <select
+          className="dropdown"
+          id="genredropdown"
+          value={selectedGenre}
+          onChange={handleGenreChange}
+        >
           <option value="">All Genres</option>
           {genres.map((genre) => (
             <option key={genre.id} value={genre.id}>
