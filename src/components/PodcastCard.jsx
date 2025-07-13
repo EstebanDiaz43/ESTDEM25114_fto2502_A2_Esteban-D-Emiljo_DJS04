@@ -28,7 +28,6 @@ export default function PodcastCard({ podcast, genres }) {
   return (
     <div className="card">
       <img src={podcast.image} alt={podcast.title} />
-
       <h3>{podcast.title}</h3>
       <p className="seasons">{podcast.seasons} seasons</p>
       <div className="tags">{genreSpans}</div>

@@ -4,6 +4,7 @@ import { genres } from "./data";
 import { fetchPodcasts } from "./api/fetchPodcasts";
 import Header from "./components/Header";
 import Filtersection from "./components/Filter";
+import PodcastCard from "./components/PodcastCard";
 
 /**
  * App - The root component of the Podcast Explorer application. It handles:
