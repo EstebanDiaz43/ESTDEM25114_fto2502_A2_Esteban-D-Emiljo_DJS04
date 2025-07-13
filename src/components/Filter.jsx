@@ -1,10 +1,19 @@
 import { genres } from "../data";
-import { filterAndSortByGenre } from "../utils/filtergenres";
+import { filterAndSortByGenre } from "../utils/filterall";
 
-export default function Filtersection({ selectedGenre, setSelectedGenre }) {
+export default function Filtersection({
+  selectedGenre,
+  setSelectedGenre,
+  sortByUpdated,
+  setSortByUpdated,
+}) {
   // Handle dropdown change and filter podcasts
   const handleGenreChange = (e) => {
     setSelectedGenre(e.target.value);
+  };
+
+  const handleUpdatedChange = (e) => {
+    setSortByUpdated(e.target.value === "1");
   };
 
   return (
@@ -25,9 +34,14 @@ export default function Filtersection({ selectedGenre, setSelectedGenre }) {
           ))}
         </select>
 
-        <select className="dropdown" id="updateddropdown">
-          <option value="">Recently Updated</option>
-          <option value="1"></option>
+        <select
+          className="dropdown"
+          id="updateddropdown"
+          value={sortByUpdated ? "1" : ""}
+          onChange={handleUpdatedChange}
+        >
+          <option value="">A-Z</option>
+          <option value="1">Most Recently Updated</option>
         </select>
       </div>
     </div>

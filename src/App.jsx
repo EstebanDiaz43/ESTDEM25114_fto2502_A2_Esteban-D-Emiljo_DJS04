@@ -5,7 +5,10 @@ import { fetchPodcasts } from "./api/fetchPodcasts";
 import Header from "./components/Header";
 import Filtersection from "./components/Filter";
 import Searchsection from "./components/Search";
-import { filterAndSortByGenre } from "./utils/filtergenres";
+import {
+  filterAndSortByGenre,
+  sortByMostRecentlyUpdated,
+} from "./utils/filterall";
 import { searchPodcastsByTitleStart } from "./utils/searchfunction";
 
 /**
@@ -22,18 +25,24 @@ export default function App() {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [sortByUpdated, setSortByUpdated] = useState(false); // <-- Add this
 
   useEffect(() => {
     fetchPodcasts(setPodcasts, setError, setLoading);
   }, []);
 
   // Filter by genre first
-  const genreFilteredPodcasts = filterAndSortByGenre(podcasts, selectedGenre);
+  let genreFilteredPodcasts = filterAndSortByGenre(podcasts, selectedGenre);
   // Then filter by search
-  const filteredPodcasts = searchPodcastsByTitleStart(
+  let filteredPodcasts = searchPodcastsByTitleStart(
     genreFilteredPodcasts,
     search
   );
+
+  // Sort by most recently updated if filter is active
+  if (sortByUpdated) {
+    filteredPodcasts = sortByMostRecentlyUpdated(filteredPodcasts);
+  }
 
   return (
     <>
@@ -41,6 +50,8 @@ export default function App() {
       <Filtersection
         selectedGenre={selectedGenre}
         setSelectedGenre={setSelectedGenre}
+        sortByUpdated={sortByUpdated}
+        setSortByUpdated={setSortByUpdated}
       />
       <main>
         {loading && (
